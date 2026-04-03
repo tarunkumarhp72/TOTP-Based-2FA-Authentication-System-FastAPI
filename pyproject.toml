@@ -1,0 +1,13 @@
+[project]
+name = "totp-based-2fa-authentication-system-fastapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.135.2",
+    "pyotp>=2.9.0",
+    "qrcode>=8.2",
+    "sqlalchemy>=2.0.48",
+    "uvicorn>=0.42.0",
+]
