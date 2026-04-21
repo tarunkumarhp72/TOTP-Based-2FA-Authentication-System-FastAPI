@@ -1,0 +1,9 @@
+"""
+Pytest configuration and shared fixtures for all tests.
+"""
+import sys
+from pathlib import Path
+
+# Add project root to Python path so imports work from any directory
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
