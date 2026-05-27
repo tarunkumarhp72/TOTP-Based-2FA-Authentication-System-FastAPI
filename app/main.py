@@ -7,7 +7,7 @@ from app.core.config import settings
 from app.core.exception_handlers import register_exception_handlers
 from app.core.logging import setup_logging
 from app.middleware import setup_middleware
-from app.routes.auth import router as auth_router
+from app.api.v1.routes.auth import router as auth_router
 
 # ── Setup Logging ─────────────────────────────────────────────────────────────
 setup_logging()

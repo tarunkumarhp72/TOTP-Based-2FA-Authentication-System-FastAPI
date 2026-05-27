@@ -1,0 +1,44 @@
+# Virtual environments (VERY IMPORTANT)
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Git
+.git/
+.gitignore
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Testing / cache
+.pytest_cache/
+.mypy_cache/
+
+# Local env file (optional but recommended)
+.env
+
+# Docker files (optional safety)
+Dockerfile
+docker-compose.yml
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Jupyter (if any)
+.ipynb_checkpoints/

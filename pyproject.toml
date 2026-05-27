@@ -24,6 +24,7 @@ dependencies = [
     "sqlalchemy[asyncio]>=2.0.48",
     "starlette>=0.52.1",
     "uvicorn[standard]>=0.42.0",
+    "aiosqlite"
 ]
 
 [tool.pytest.ini_options]
