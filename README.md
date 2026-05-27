@@ -41,7 +41,7 @@ Make sure the `.env` file has correct settings:
 ```
 ENVIRONMENT=development
 DEBUG=True
-SUPER_DATABASE_URL=sqlite+aiosqlite:///./auth.db
+DATABASE_URL=sqlite+aiosqlite:///./auth.db
 REDIS_URL=redis://localhost:6379/0
 ```
 

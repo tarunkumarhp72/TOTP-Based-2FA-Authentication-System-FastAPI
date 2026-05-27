@@ -1,4 +1,5 @@
 from functools import lru_cache
+from pydantic import field_validator  # यह add करो
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -13,12 +14,12 @@ class Settings(BaseSettings):
     # ── Application ──────────────────────────────────────────────
     APP_NAME: str
     APP_VERSION: str
-    ENVIRONMENT: str  # development | staging | production
+    ENVIRONMENT: str
     DEBUG: bool
     SECRET_KEY: str
  
     # ── Database ─────────────────────────────────────────────────
-    SUPER_DATABASE_URL: str
+    DATABASE_URL: str
     DB_POOL_SIZE: int
     DB_MAX_OVERFLOW: int
     DB_POOL_TIMEOUT: int
@@ -41,10 +42,6 @@ class Settings(BaseSettings):
     TOTP_ISSUER: str
     TOTP_BACKUP_CODE_COUNT: int
  
-    # ── Rate Limiting ────────────────────────────────────────────
-    # Note: Rate limiting is configured via decorators, not .env
-    # These are kept for reference but not actively used
- 
     # ── CORS ─────────────────────────────────────────────────────
     ALLOWED_ORIGINS: list[str]
     ALLOWED_HOSTS: list[str]
@@ -52,13 +49,24 @@ class Settings(BaseSettings):
     # ── Request ──────────────────────────────────────────────────
     MAX_REQUEST_SIZE_BYTES: int
     REQUEST_TIMEOUT_SECONDS: int
+
+    # ── यह validator add करो ─────────────────────────────────────
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def fix_database_url(cls, v: str) -> str:
+        """Ensure async driver is used."""
+        if v.startswith("postgresql://"):
+            return v.replace("postgresql://", "postgresql+asyncpg://", 1)
+        if v.startswith("postgres://"):
+            return v.replace("postgres://", "postgresql+asyncpg://", 1)
+        return v
     
     @property
-    def is_production(self) ->bool:
+    def is_production(self) -> bool:
         return self.ENVIRONMENT == "production"
     
-@lru_cache
 
+@lru_cache
 def get_settings() -> Settings:
     return Settings()
 
