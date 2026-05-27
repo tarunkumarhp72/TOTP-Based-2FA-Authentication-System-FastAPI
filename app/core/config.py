@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str
  
     # ── Database ─────────────────────────────────────────────────
-    DATABASE_URL: str
+    SUPER_DATABASE_URL: str
     DB_POOL_SIZE: int
     DB_MAX_OVERFLOW: int
     DB_POOL_TIMEOUT: int

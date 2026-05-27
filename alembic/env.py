@@ -21,7 +21,7 @@ from app.models import User, RefreshToken  # noqa: F401
 config = context.config
 
 # Set database URL from app config
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+config.set_main_option("sqlalchemy.url", settings.SUPER_DATABASE_URL)
 
 # Interpret the config file for Python logging.
 if config.config_file_name is not None:
@@ -38,7 +38,7 @@ target_metadata = Base.metadata
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode."""
-    url = settings.DATABASE_URL
+    url = settings.SUPER_DATABASE_URL
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -65,7 +65,7 @@ def do_run_migrations(connection: Connection) -> None:
 async def run_async_migrations() -> None:
     """Run migrations in 'online' mode using async engine."""
     connectable = create_async_engine(
-        settings.DATABASE_URL,
+        settings.SUPER_DATABASE_URL,
         poolclass=pool.NullPool,
     )
 
