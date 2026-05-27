@@ -110,7 +110,7 @@ def run_migrations_online() -> None:
 
 
 # Force offline mode to avoid database connection issues during autogenerate
-if True:  # Always use offline mode for autogenerate
+if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
