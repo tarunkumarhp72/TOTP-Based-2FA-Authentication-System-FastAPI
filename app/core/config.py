@@ -1,5 +1,5 @@
 from functools import lru_cache
-from pydantic import field_validator  # यह add करो
+from pydantic import field_validator  
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -50,7 +50,7 @@ class Settings(BaseSettings):
     MAX_REQUEST_SIZE_BYTES: int
     REQUEST_TIMEOUT_SECONDS: int
 
-    # ── यह validator add करो ─────────────────────────────────────
+
     @field_validator("DATABASE_URL", mode="before")
     @classmethod
     def fix_database_url(cls, v: str) -> str:
