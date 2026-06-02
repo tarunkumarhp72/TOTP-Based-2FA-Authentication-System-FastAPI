@@ -4,6 +4,14 @@ A secure **Two-Factor Authentication (2FA)** system using **Time-based One-Time 
 
 ---
 
+## 🎯 Live Demo
+
+**Try it now:** https://totp-based-2fa-authentication-system-fastapi-a3c7ddc7.fastapicloud.dev/
+
+**API Documentation:** https://totp-based-2fa-authentication-system-fastapi-a3c7ddc7.fastapicloud.dev/docs
+
+---
+
 ## 🚀 Quick Start Setup (Step-by-Step)
 
 ### **Step 1: Install Python & Dependencies**
@@ -509,6 +517,95 @@ This implementation follows **OWASP Top 10** and **NIST guidelines**:
 * 🔄 **Auto-rotating** - New code every 30 seconds
 * 💰 **Free** - No SMS charges
 * 📱 **Easy app** - Google Authenticator is free
+
+---
+
+## 🚀 Deployment Guide
+
+### **Deploy to FastAPI Cloud (Recommended)**
+
+FastAPI Cloud provides the simplest deployment experience for FastAPI applications with automatic scaling and built-in database support.
+
+**Prerequisites:**
+- FastAPI Cloud account (sign up at https://www.fastapi.cloud/)
+- GitHub repository with this project
+- Command line access to FastAPI Cloud CLI
+
+**Step-by-Step Deployment:**
+
+1. **Install FastAPI Cloud CLI**
+   ```bash
+   pip install fastapi-cloud
+   ```
+
+2. **Authenticate with FastAPI Cloud**
+   ```bash
+   fastapi-cloud login
+   ```
+   This opens a browser to authenticate with your FastAPI Cloud account.
+
+3. **Create Project**
+   ```bash
+   fastapi-cloud project create --name totp-2fa
+   ```
+
+4. **Deploy Your Application**
+   ```bash
+   # Navigate to project directory
+   cd TOTP-Based-2FA-Authentication-System-FastAPI
+   
+   # Deploy
+   fastapi-cloud deploy
+   ```
+
+5. **Configure Environment Variables**
+   
+   In FastAPI Cloud dashboard, go to **Settings → Environment Variables** and add:
+   
+   ```env
+   ENVIRONMENT=production
+   DEBUG=False
+   SECRET_KEY=your-very-long-random-secret-key-minimum-32-characters
+   ALGORITHM=HS256
+   ACCESS_TOKEN_EXPIRE_MINUTES=15
+   REFRESH_TOKEN_EXPIRE_DAYS=7
+   DATABASE_URL=fastapi://project-db  # FastAPI Cloud manages this
+   REDIS_URL=fastapi://project-redis  # FastAPI Cloud provides Redis
+   CORS_ORIGINS=["https://yourdomain.com"]
+   ALLOWED_HOSTS=["yourdomain.com"]
+   ```
+
+6. **Enable Database**
+   - FastAPI Cloud dashboard → **Add-ons → PostgreSQL**
+   - Select your storage plan
+   - Database URL is automatically injected as `DATABASE_URL`
+
+7. **Enable Redis Cache**
+   - FastAPI Cloud dashboard → **Add-ons → Redis**
+   - Automatically available as `REDIS_URL`
+
+8. **Run Database Migrations**
+   ```bash
+   # Via FastAPI Cloud CLI
+   fastapi-cloud run alembic upgrade head
+   
+   # Or via dashboard console
+   # Settings → Console → Run: alembic upgrade head
+   ```
+
+9. **Access Your Application**
+   ```
+   Your app is live at: https://totp-2fa.fastapi.cloud
+   API Documentation: https://totp-2fa.fastapi.cloud/docs
+   ```
+
+10. **Setup Custom Domain (Optional)**
+    - FastAPI Cloud dashboard → **Settings → Custom Domain**
+    - Add your domain (e.g., `auth.yourdomain.com`)
+    - Update DNS records as instructed
+    - HTTPS automatically configured
+
+**Deployment Complete!** ✅
 
 ---
 
